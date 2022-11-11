@@ -7,15 +7,20 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-app.get('/', (req, res) => {
-    client.messages
+app.post('/message', (req, res) => {
+    const name = req.body.name;
+    const number = req.body.number;
+
+    console.log(name, number);
+
+    /*client.messages
         .create({
             body: 'The cake is a lie',
             from: '+13393304005',
             to: '+13153828467'
         }).then(message => {
             res.send(message.sid);
-        })
+        })*/
 });
 
 app.listen(port, () => {
